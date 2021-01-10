@@ -31,6 +31,36 @@ class Solution:
         return max_length
 
 
+class Solution2:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) == 1:
+            return 1
+
+        max_length = 1
+
+        start_pos = 0
+        end_pos = 1
+        seen = set()
+        seen.add(s[0])
+        while end_pos < len(s):
+            current = s[end_pos]
+
+            if current in seen:
+                max_length = max(end_pos - start_pos, max_length)
+                if s[start_pos] == current:
+                    start_pos += 1
+                else:
+                    start_pos = s.index(current, start_pos + 1)
+                seen = set(s[start_pos:end_pos+1])
+            else:
+                max_length = max(end_pos - start_pos, max_length)
+
+            seen.add(current)
+            end_pos += 1
+
+        return max_length
+
+
 if __name__ == '__main__':
-    s = "abcabcbb"
-    print(Solution().lengthOfLongestSubstring(s))
+    s = "pwwkew"
+    print(Solution2().lengthOfLongestSubstring(s))
