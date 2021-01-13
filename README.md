@@ -1,0 +1,1 @@
+Solutions aren't snake case because this is how Leet Code takes submissions.
